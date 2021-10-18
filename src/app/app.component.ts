@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular-projektas';
+  public vardas: string;
+  public garbesTaskai: number;
+
+  public constructor(){
+    this.vardas = 'Gitanas';
+  }
 }
