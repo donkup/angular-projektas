@@ -1,10 +1,13 @@
-<div class="pasisveikinimas">
-  Hello {{vardas}}
-</div>
+<h1 class="pasisveikinimas">
+  Labas, {{vardas}}!
+</h1>
 
 <div class="skaitliukas">
-  <div class="skaicisu">{{garbesTaskai}}</div>
+  <div class="skaicius" [class.geras]="garbesTaskai >= 5" [class.blogas]="garbesTaskai <= -5">
+    {{garbesTaskai}}
+  </div>
 
-  <button>PRESS</button>
+  <button (click)="pridetiTasku()">Prideti +1</button>
 
+  <button (click)="atimtiTasku()">Atimti -1</button>
 </div>
