@@ -1,4 +1,6 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {Prezidentas} from "./models/prezidentas";
+
 
 @Component({
   selector: 'app-root',
@@ -6,18 +8,23 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  public vardas: string;
-  public garbesTaskai: number = 0;
+  public prezidentas: Prezidentas;
+  public klases: string[] = ["geras", "blogas", "didelis"];
+
+  public klases2: Set<string> = new Set();
+
+  public patarejai: string[] = [
+    "Agnė Jakstienė",
+    "Nerijus Kaučikas",
+    "Tomas Lukoševičius",
+    "Jaroslav Neverovič"
+  ];
 
   public constructor() {
-    this.vardas = "Gitanas";
+    this.prezidentas = new Prezidentas("Gitanas");
   }
 
-  public pridetiTasku(): void {
-    this.garbesTaskai++;
-  }
-
-  public atimtiTasku(): void {
-    this.garbesTaskai--;
+  public istrintiPatareja(index: number): void {
+    this.patarejai.splice(index, 1);
   }
 }

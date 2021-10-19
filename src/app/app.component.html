@@ -1,13 +1,38 @@
 <h1 class="pasisveikinimas">
-  Labas, {{vardas}}!
+  Prezidentas, {{prezidentas.vardas}}!
 </h1>
 
 <div class="skaitliukas">
-  <div class="skaicius" [class.geras]="garbesTaskai >= 5" [class.blogas]="garbesTaskai <= -5">
-    {{garbesTaskai}}
+  <div class="skaicius" [ngClass]="{
+         'geras': prezidentas.reitingas >= 5,
+         'didelis': true
+       }" [class.blogas]="prezidentas.reitingas <= -5" [ngStyle]="{'font-size.px': 48 + prezidentas.reitingas}">
+    {{prezidentas.reitingas}}
   </div>
 
-  <button (click)="pridetiTasku()">Prideti +1</button>
+  <button (click)="prezidentas.pridetiReitingo()" [ngStyle]="{backgroundColor: 'green'}">
+    Prideti +1
+  </button>
 
-  <button (click)="atimtiTasku()">Atimti -1</button>
+  <button (click)="prezidentas.atimtiReitingo()">Atimti -1</button>
 </div>
+
+<ng-container *ngIf="prezidentas.reitingas >= 10">
+  <div class="reitingoPranesimas">
+    Prezidentas turi labai aukštą reitingą!
+  </div>
+
+  <div class="reitingoPranesimas">
+    Kol kas...
+  </div>
+</ng-container>
+
+<h2>Patarėjai</h2>
+
+<div *ngFor="let patarejas of patarejai; index as indeksas">
+  {{indeksas + 1}}. {{patarejas}}
+
+  <button (click)="istrintiPatareja(indeksas)">Istrinti</button>
+</div>
+
+<button (click)="patarejai.length = 0;">Ištrinti visus</button>
